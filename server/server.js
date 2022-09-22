@@ -13,23 +13,24 @@ const io = socketio(server)
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 app.use(express.static(__dirname+'/static'))
-app.get('*', function(req, res,next){
-  res.sendFile(__dirname+'/view/1.html')
-})
+
 
 let count = 0;
+let chatRoomData=[];
+let connnectedClients={};
 
 io.on('connection', (client)=> {
-  client.on('login', function(res){
-    client.username = res;
-    console.log('username', client.username)
+  console.log("New client connnected")
+
+  client.on('login', (data)=> {
+    console.log(data)
+    connnectedClients.username = data.username;
     count++
     io.emit('count', count)
-    console.log(count)
-    socketio.emit('msg', {name: client.username, msg: 'successfully connected'+(new Date())})
+    io.emit('msg', {name: data.username, msg: 'successfully connected'+(new Date())})
   })
 
-  client.on('send', function(res) {
+  client.on('send', (req,res)=> {
     console.log('message from client');
     io.emit('msg', {name: client.username, msg: res});
   })

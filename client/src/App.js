@@ -1,13 +1,12 @@
 
 import './App.css';
-import io from 'socket.io-client';
-
-const socket =io();
+import Room from './pages/chatRoom';
 
 function App() {
   return (
     <div className="App">
       <h1>Hello Wesley</h1>
+      <Room />
     </div>
   );
 }
