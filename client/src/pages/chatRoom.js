@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
-const Room = () => {
+const Chat = () => {
   const [data, setData] = useState([]);
 
   useEffect(()=> {
@@ -20,12 +20,6 @@ const Room = () => {
     e.preventDefault()
     console.log("clicked", data);
   };
-
-  // const message = Array.isArray(data) && data.map((msg)=>{
-  //   return (
-  //       <li>msg</li>
-  //   )
-  // })
 
   return (
     <div className="form-floating">
@@ -47,4 +41,4 @@ const Room = () => {
   );
 };
 
-export default Room;
+export default Chat;
