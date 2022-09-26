@@ -6,6 +6,7 @@ import Logo from '../doc/logo.png';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { registerRoute } from '../utils/apiRoutes';
 
 function Register() {
   const [val, setVal] =useState({
@@ -26,18 +27,32 @@ function Register() {
   const valValidate =() => {
     const {username, email, password, confirmPassword} = val;
     if (password !== confirmPassword) {
-      toast.error("password and confirm password should be the same.", toastOption)
+      toast.error("password and confirm password should be the same.", toastOption);
+      return false;
     } else if (username.length < 3) {
       toast.error('Username shold be greater than 3 characters', toastOption)
+      return false;
     } else if (password.length < 8) {
       toast.error("Password should be equal or greater than 8 characters", toastOption)
+      return false;
+    } else if (email === "") {
+      toast.error("email cannot be empty", toastOption);
+      return false;
     }
+    return true;
   }
 
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    valValidate()
+    if (valValidate()) {
+    const {username, email, password } = val;
+      const { data } = await axios.post(registerRoute, {
+        username,
+        email,
+        password
+      })
+    }
     
   };
   const changeHandler = (e) => {
@@ -139,3 +154,4 @@ const FormContainer = styled.div`
 `;
 
 export default Register
+

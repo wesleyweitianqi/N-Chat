@@ -5,9 +5,10 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const authRoutes = require('./routes/auth'); 
+
 const http = require('http');
 const socketio = require('socket.io');
-const { Socket } = require('dgram');
 const app = express();
 const server = http.createServer(app)
 const io = socketio(server)
@@ -17,6 +18,7 @@ app.use(morgan("tiny"));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.static(__dirname+'/static'))
+app.use("/api/auth", authRoutes)
 
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
