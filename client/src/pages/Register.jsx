@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './Register.scss';
 import Logo from '../doc/logo.png';
 import { toast, ToastContainer } from 'react-toastify';
@@ -15,6 +15,7 @@ function Register() {
     password: "",
     confirmPassword: ""
   })
+  const navigate= useNavigate();
 
   const toastOption = {
     position: "bottom-right",
@@ -47,20 +48,27 @@ function Register() {
     e.preventDefault();
     if (valValidate()) {
     const {username, email, password } = val;
-      const { data } = await axios.post(registerRoute, {
-        username,
-        email,
-        password
+      axios.post(registerRoute, {username, email, password}).then(res => {
+        if(res.data.status) {
+          localStorage.setItem("username", JSON.stringify(res.data.user))
+          navigate("/chat")
+        } 
+        if(!res.data.statue) {
+          toast.error(res.data.msg, toastOption)
+        }  
       })
-    }
-    
+    }   
   };
   const changeHandler = (e) => {
     e.preventDefault();
-    console.log(e.target.name)
     setVal({...val, [e.target.name]: e.target.value})
-
   }
+
+  useEffect(()=> {
+    if(localStorage.getItem('username')) {
+      navigate('/chat')
+    }
+  })
   return (
     <>
       <FormContainer>

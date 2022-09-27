@@ -1,8 +1,40 @@
+const User = require('../models/useModel')
+const bcrypt = require('bcryptjs');
+
 module.exports.register = async (req, res, next) => {
   try{
-    const { username, email, password }= req.body
-    console.log(username, email, password);
+    const { username, email, password }= req.body;
+    const usernameValidate = await User.findOne({username});
+    if (usernameValidate) return res.json({msg: "Username already used", status: false})
+    const emailValidate = await User.findOne({ email }) 
+    if (emailValidate) return res.json({msg: "Email already used", status: false})
+    const hashpassword  = bcrypt.hashSync(password, 10);
+    const user = await User.create({
+      username,
+      email,
+      password: hashpassword
+    })
+    delete user.password;
+    return res.json({status: true, user})
   } catch (err) {
     next(err)
   }
-}
+  }
+
+  module.exports.login = async(req,res,next) => {
+    try{
+      const {username, password} = req.body;
+      const user1 = await User.findOne({ username })
+      if (user1) {
+        if(bcrypt.compareSync(password, user1.password)) {
+          return res.json({status: true, user1})
+        } else {
+          return res.json({msg: "Password is wrong", status: false})
+        }
+      } else {
+        return res.json({msg: "User not exist", status: false})
+      }
+    }catch(err) {
+      console.error(err)
+    }
+  }
