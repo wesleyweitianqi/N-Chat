@@ -47,7 +47,7 @@ function Login() {
         if (res.data.status) {
           console.log(res.data)
           localStorage.setItem("username", JSON.stringify(res.data.user1))
-          navigate("/")
+          navigate("/setAvatar")
         }
         if (!res.data.status) {
           toast.error(res.data.msg, toastOption)
@@ -63,10 +63,10 @@ function Login() {
 
   useEffect(()=> {
     if(localStorage.getItem("username")) {
-      navigate("/chat")
+      navigate("/setAvatar")
     }
   }, []);
-  
+
   return (
     <>
       <FormContainer>

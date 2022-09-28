@@ -7,7 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { setAvatarRoute } from '../utils/apiRoutes';
-import  Buffer from 'buffer';
+import  {Buffer} from 'buffer';
 
 
 function SetAvatar() {
@@ -25,7 +25,8 @@ function SetAvatar() {
   }
 
   useEffect(()=> {
-    if(localStorage.getItem('username')) {
+    const user = JSON.parse(localStorage.getItem('username'))
+    if(user.isAvatarImageSet) {
       navigate("/login")
     }
   },[]);
@@ -35,8 +36,9 @@ function SetAvatar() {
       toast.error("Please select an avatar", toastOption)
     } else {
       const user = JSON.parse(localStorage.getItem("username"))
-      axios.post(`${setAvatarRoute}/user._id`, {image: avatars[selectedAvatar]} ).then(res => {
-        console.log(res.data)
+      console.log(user)
+      axios.post(`${setAvatarRoute}/${user._id}`, {image: avatars[selectedAvatar]} ).then(res => {
+        
         if (res.data.isSet) {
           user.isAvatarImageSet = true;
           user.avatarImage = res.data.image;
@@ -51,14 +53,14 @@ function SetAvatar() {
 
   useEffect(()=> {
     const data = [];
-    for (let i =0; i < 6; i ++ ) {
-      const image = axios.get(`${api}/${Math.round(Math.random()*1000)}`);
-      console.log(image)
-      // const buffer = new Buffer(image.data);
-      // data.push(buffer.toString("base64"))
+    for (let i =0; i < 8; i ++ ) {
+      axios.get(`${api}/${Math.round(Math.random()*1000)}`).then(image=>{
+        const buffer = new Buffer(image.data);
+        data.push(buffer.toString("base64"))
+        setAvatars(data)
+        setIsLoading(false)
+      }); 
     }
-    setAvatars(data)
-    setIsLoading(false)
 
   },[])
 
@@ -77,6 +79,7 @@ function SetAvatar() {
             {avatars.map((avatar, index) => {
               return (
                 <div
+                  key={index}
                   className={`avatar ${
                     selectedAvatar === index ? "selected" : ""
                   }`}
@@ -84,7 +87,7 @@ function SetAvatar() {
                   <img
                     src={`data:image/svg+xml;base64,${avatar}`}
                     alt="avatar"
-                    key={index}
+      
                     onClick={() => setSelectedAvatar(index)}
                   />
                 </div>
