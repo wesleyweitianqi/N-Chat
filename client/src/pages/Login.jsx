@@ -61,11 +61,11 @@ function Login() {
     setVal({...val, [e.target.name]: e.target.value})
   }
 
-  useEffect(()=> {
-    if(localStorage.getItem("username")) {
-      navigate("/setAvatar")
-    }
-  }, []);
+  // useEffect(()=> {
+  //   if(localStorage.getItem("username")) {
+  //     navigate("/setAvatar")
+  //   }
+  // }, []);
 
   return (
     <>

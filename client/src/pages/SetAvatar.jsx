@@ -6,7 +6,6 @@ import loader from '../doc/loader.gif';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import { setAvatarRoute } from '../utils/apiRoutes';
 import  {Buffer} from 'buffer';
 
 
@@ -37,13 +36,13 @@ function SetAvatar() {
     } else {
       const user = JSON.parse(localStorage.getItem("username"))
       console.log(user)
-      axios.post(`${setAvatarRoute}/${user._id}`, {image: avatars[selectedAvatar]} ).then(res => {
+      axios.post(`/setAvatar/${user._id}`, {image: avatars[selectedAvatar]} ).then(res => {
         
         if (res.data.isSet) {
           user.isAvatarImageSet = true;
           user.avatarImage = res.data.image;
           localStorage.setItem("username", JSON.stringify(user))
-          navigate("/")
+          navigate("/chat")
         } else {
           toast.error("Error setting avatar, Please try again", toastOption);
         }
@@ -53,7 +52,7 @@ function SetAvatar() {
 
   useEffect(()=> {
     const data = [];
-    for (let i =0; i < 8; i ++ ) {
+    for (let i =0; i < 2; i ++ ) {
       axios.get(`${api}/${Math.round(Math.random()*1000)}`).then(image=>{
         const buffer = new Buffer(image.data);
         data.push(buffer.toString("base64"))
