@@ -46,7 +46,7 @@ function Login() {
       axios.post(loginRoute, {username, password}).then(res => {
         if (res.data.status) {
           console.log(res.data)
-          localStorage.setItem("username", JSON.stringify(res.data.user1))
+          localStorage.setItem("currentUser", JSON.stringify(res.data.user1))
           navigate("/setAvatar")
         }
         if (!res.data.status) {
@@ -61,11 +61,11 @@ function Login() {
     setVal({...val, [e.target.name]: e.target.value})
   }
 
-  // useEffect(()=> {
-  //   if(localStorage.getItem("username")) {
-  //     navigate("/setAvatar")
-  //   }
-  // }, []);
+  useEffect(()=> {
+    if(localStorage.getItem("currentUser")) {
+      navigate("/setAvatar")
+    }
+  }, []);
 
   return (
     <>

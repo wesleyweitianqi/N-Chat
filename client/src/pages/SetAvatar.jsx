@@ -24,9 +24,9 @@ function SetAvatar() {
   }
 
   useEffect(()=> {
-    const user = JSON.parse(localStorage.getItem('username'))
+    const user = JSON.parse(localStorage.getItem('currentUser'))
     if(user.isAvatarImageSet) {
-      navigate("/login")
+      navigate("/chat")
     }
   },[]);
 
@@ -34,14 +34,14 @@ function SetAvatar() {
     if (selectedAvatar === undefined) {
       toast.error("Please select an avatar", toastOption)
     } else {
-      const user = JSON.parse(localStorage.getItem("username"))
+      const user = JSON.parse(localStorage.getItem("currentUser"))
       console.log(user)
-      axios.post(`/setAvatar/${user._id}`, {image: avatars[selectedAvatar]} ).then(res => {
+      axios.post(`http://localhost:8000/api/auth/setAvatar/${user._id}`, {avatarImage: avatars[selectedAvatar]} ).then(res => {
         
         if (res.data.isSet) {
           user.isAvatarImageSet = true;
           user.avatarImage = res.data.image;
-          localStorage.setItem("username", JSON.stringify(user))
+          localStorage.setItem("currentUser", JSON.stringify(user))
           navigate("/chat")
         } else {
           toast.error("Error setting avatar, Please try again", toastOption);
@@ -62,6 +62,7 @@ function SetAvatar() {
     }
 
   },[])
+  console.log(avatars)
 
   return (
     <>

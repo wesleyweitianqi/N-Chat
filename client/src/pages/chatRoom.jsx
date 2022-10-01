@@ -15,10 +15,10 @@ const Chat = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
 
   useEffect(()=> {
-    if (!localStorage.getItem('username')) {
-      navigate("/")
+    if (!localStorage.getItem('currentUser')) {
+      navigate("/login")
     }
-    let user = JSON.parse(localStorage.getItem('username'));
+    let user = JSON.parse(localStorage.getItem('currentUser'));
     setCurrentUser(user);
   },[])
 
@@ -33,11 +33,12 @@ const Chat = () => {
       }
     }
   },[currentUser])
- 
+  
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
-
+  console.log("currentChat", currentChat)
+  console.log("all contacts", contacts)
   return (
     <>
       <Container>

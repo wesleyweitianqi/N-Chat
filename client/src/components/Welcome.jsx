@@ -7,7 +7,7 @@ export default function Welcome() {
   useEffect(() => {
     setUserName(
       JSON.parse(
-        localStorage.getItem("username")
+        localStorage.getItem("currentUser")
       ).username
     );
   }, []);

@@ -3,14 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { BiPowerOff } from "react-icons/bi";
 import styled from "styled-components";
 import axios from "axios";
+import { logoutRoute } from "../utils/apiRoutes"; 
 
 const  Logout =()=> {
   const navigate = useNavigate();
   const handleClick = async () => {
     const id = await JSON.parse(
-      localStorage.getItem("username")
-    )._id;
-    const data = await axios.get(`localhost:8000/api/auth/logout`);
+      localStorage.getItem("currentUser")
+    );
+    
+    const data = await axios.get(`${logoutRoute}/${id._id}`);
     if (data.status === 200) {
       localStorage.clear();
       navigate("/login");

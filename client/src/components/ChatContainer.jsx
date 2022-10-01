@@ -1,20 +1,21 @@
 import React, {useState, useRef, useEffect} from "react";
 import axios from "axios";
-
 import { v4 as uuidv4 } from "uuid";
 import Logout from './Logout';
 import styled from "styled-components";
 import ChatInput from "./ChatInput";
+import { sendMessageRoute, receiveMessageRoute } from "../utils/apiRoutes";
 
 const ChatContainer = (props)=> {
   const { currentChat, socket } = props;
+  console.log(socket)
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
   useEffect(()=> {
-    const data = JSON.parse(localStorage.getItem('username'))
-    axios.post('/api/messages/getmsg', {from: data._id, to: currentChat._id}).then(res=> {
+    const data = JSON.parse(localStorage.getItem('currentUser'))
+    axios.post('http://localhost:8000/api/messages/getmsg', {from: data._id, to: currentChat._id}).then(res=> {
       setMessages(res.data)
     })
   },[currentChat]);
@@ -23,7 +24,7 @@ const ChatContainer = (props)=> {
     const getCurrentChat = async () => {
       if (currentChat) {
         await JSON.parse(
-          localStorage.getItem('username')
+          localStorage.getItem('currentUser')
         )._id;
       }
     };
@@ -32,7 +33,7 @@ const ChatContainer = (props)=> {
 
   const handleSendMsg = async (msg) => {
     const data = await JSON.parse(
-      localStorage.getItem('username')
+      localStorage.getItem('currentUser')
     );
     socket.current.emit("send-msg", {
       to: currentChat._id,
@@ -50,13 +51,13 @@ const ChatContainer = (props)=> {
     setMessages(msgs);
   };
 
-  useEffect(() => {
-    if (socket.current) {
-      socket.current.on("msg-recieve", (msg) => {
-        setArrivalMessage({ fromSelf: false, message: msg });
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (socket.current) {
+  //     socket.current.on("msg-recieve", (msg) => {
+  //       setArrivalMessage({ fromSelf: false, message: msg });
+  //     });
+  //   }
+  // }, []);
 
   useEffect(() => {
     arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);

@@ -3,13 +3,14 @@ import styled from "styled-components";
 import Logo from "../doc/logo.svg";
 
 
-export default function Contacts({ contacts, changeChat }) {
+export default function Contacts(props) {
+  const {contacts, changeChat } = props;
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
   useEffect( () => {
     const data = JSON.parse(
-      localStorage.getItem("username")
+      localStorage.getItem("currentUser")
     );
     setCurrentUserName(data.username);
     setCurrentUserImage(data.avatarImage);
@@ -18,6 +19,8 @@ export default function Contacts({ contacts, changeChat }) {
     setCurrentSelected(index);
     changeChat(contact);
   };
+  console.log("currentSelected", currentSelected)
+  
   return (
     <>
       {currentUserImage && currentUserImage && (
@@ -30,7 +33,7 @@ export default function Contacts({ contacts, changeChat }) {
             {contacts.map((contact, index) => {
               return (
                 <div
-                  key={contact._id}
+                  key={index}
                   className={`contact ${
                     index === currentSelected ? "selected" : ""
                   }`}

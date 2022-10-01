@@ -50,7 +50,7 @@ function Register() {
     const {username, email, password } = val;
       axios.post(registerRoute, {username, email, password}).then(res => {
         if(res.data.status) {
-          localStorage.setItem("username", JSON.stringify(res.data.user))
+          localStorage.setItem("currentUser", JSON.stringify(res.data.user))
           navigate("/chat")
         } 
         if(!res.data.statue) {
@@ -65,7 +65,7 @@ function Register() {
   }
 
   useEffect(()=> {
-    if(localStorage.getItem('username')) {
+    if(localStorage.getItem('currentUser')) {
       navigate('/chat')
     }
   })
