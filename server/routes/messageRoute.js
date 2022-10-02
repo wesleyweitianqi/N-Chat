@@ -4,16 +4,18 @@ const Message = require('../models/messageModel');
 router.post('/addmsg', async (req, res,next)=> {
   try{
     const {from, to, message} = req.body;
-    Message.create({
+    const data = await Message.create({
       message: {text: message},
       users: [from, to],
       sender: from
-    }).then(data=> {
-      res.json({msg: "message added"})
     })
+    if (data) {
+      return res.json("message saved")
+    }
+    return res.json('failed to save message')
     
-  }catch(err) {
-    next(err);
+  }catch(ex) {
+    next(ex);
   }
 });
 
@@ -22,7 +24,7 @@ router.post('/getmsg', async (req,res, next)=> {
   try{
     const {from, to} = req.body;
     const messages = await Message.find({
-      users: {Sall: [from, to]}
+      users: {$all: [from, to]}
     }).sort({updateAt: 1})
 
     const projectedMessages = messages.map((msg)=> {
@@ -32,8 +34,8 @@ router.post('/getmsg', async (req,res, next)=> {
       }
     })
     res.json(projectedMessages)
-  }catch(err){
-    next(err)
+  }catch(ex){
+    next(ex)
   }
 });
 

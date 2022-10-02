@@ -35,12 +35,12 @@ const ChatContainer = (props)=> {
     const data = await JSON.parse(
       localStorage.getItem('currentUser')
     );
-    socket.current.emit("send-msg", {
-      to: currentChat._id,
-      from: data._id,
-      msg,
-    });
-    await axios.post("localhost:8000/api/messages/addmsg", {
+    // socket.current.emit("send-msg", {
+    //   to: currentChat._id,
+    //   from: data._id,
+    //   msg,
+    // });
+    await axios.post("http://localhost:8000/api/messages/addmsg", {
       from: data._id,
       to: currentChat._id,
       message: msg,
@@ -100,7 +100,7 @@ const ChatContainer = (props)=> {
         );
       })}
     </div>
-    <ChatInput handleSendMsg={handleSendMsg} />
+    <ChatInput class="chat-input" handleSendMsg={handleSendMsg} />
   </Container>
   )
 }
@@ -133,6 +133,9 @@ const Container = styled.div`
         }
       }
     }
+  }
+  .chat-input {
+    padding: 1rem 2rem;
   }
   .chat-messages {
     padding: 1rem 2rem;
