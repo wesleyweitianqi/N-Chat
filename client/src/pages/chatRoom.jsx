@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
@@ -6,6 +6,8 @@ import Contacts from "../components/Contacts";
 import ChatContainer from "../components/ChatContainer";
 import Welcome from "../components/Welcome";
 import { getAllUsersRoute } from "../utils/apiRoutes";
+import {io} from 'socket.io-client';
+import './chatRoom.scss';
 
 const Chat = () => {
   const [data, setData] = useState([]);
@@ -13,6 +15,7 @@ const Chat = () => {
   const [contacts, setContacts] = useState([]);
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
+  const socketRef = useRef()
 
   useEffect(()=> {
     if (!localStorage.getItem('currentUser')) {
@@ -37,45 +40,24 @@ const Chat = () => {
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
-  console.log("currentChat", currentChat)
-  console.log("all contacts", contacts)
+  
+  useEffect(()=> {
+    if (currentUser) {
+      socketRef.current =io('http://localhost:8000')
+      socketRef.current.emit('add-user', currentUser._id)
+    }
+  }, [currentUser])
   return (
-    <>
-      <Container>
-        <div className="container">
-          <Contacts contacts={contacts} changeChat={handleChatChange} />
-          {currentChat === undefined ? (
-            <Welcome />
-          ) : (
-            <ChatContainer currentChat={currentChat}  />
-          )}
+  
+      <div className="chat-container">
+        <div className="container"> 
+          <Contacts className="grid-item-1" contacts={contacts} changeChat={handleChatChange} />
+          {currentChat === undefined ? (<Welcome className='grid-item-2'/>) 
+          : (<ChatContainer className='grid-item-2' currentChat={currentChat} socketRef={socketRef} />)}
         </div>
-      </Container>
-    </>
+      </div>
+  
   );
 }
-
-const Container = styled.div`
-    height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
-  background-color: #131324;
-  .container {
-    height: 85vh;
-    width: 85vw;
-    background-color: #00000076;
-    display: grid;
-    grid-template-columns: 25% 75%;
-    @media screen and (min-width: 720px) and (max-width: 1080px) {
-      grid-template-columns: 35% 65%;
-    }
-  }
-`
-
-
 
 export default Chat;

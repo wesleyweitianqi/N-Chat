@@ -11,7 +11,12 @@ const http = require('http');
 const socketio = require('socket.io');
 const app = express();
 const server = http.createServer(app)
-const io = socketio(server)
+const io = socketio(server, {
+  cors: {
+    origin:'http://localhost:3000',
+    Credentials:true
+  }
+})
 
 app.use(cors());
 app.use(morgan("tiny"));
@@ -30,33 +35,27 @@ mongoose.connect(process.env.MONGO_URL, {
 
 let count = 0;
 let chatRoomData=[];
-let connnectedClients={};
+let connnectedsockets={};
 
-io.on('connection', (client)=> {
-  console.log("New client connnected")
+const sockets = new Map();
+io.on('connection', (socket)=> {
+  console.log("New socket connnected", socket.id)
+  socket.on('add-user', (userId)=> {
+    sockets.set(userId, socket.id)
+  })
+  
 
-  client.on('login', (data)=> {
+  socket.on('send-msg', (data)=> {
     console.log(data)
-    connnectedClients.username = data.username;
-    count++
-    io.emit('count', count)
-    io.emit('msg', {name: data.username, msg: 'successfully connected'+(new Date())})
+    const sendUserSocket = sockets.get(data.to)
+    if (sendUserSocket) {
+      console.log(sendUserSocket)
+      socket.to(sendUserSocket).emit('msg-recieve', data.msg);
+    }
   })
 
-  client.on('send', (req,res)=> {
-    console.log('message from client');
-    io.emit('msg', {name: client.username, msg: res});
-  })
-
-  client.on('disconnect', ()=> {
-    count--;
-    io.emit('count', count)
-  })
 })
 
-
-// const catRouter = require("./routes/catsRoutes")
-// app.use('/cats', catRouter)
 app.get("/", (req, res)=> {
   res.status(200).send("Welcome to Chat")
 })

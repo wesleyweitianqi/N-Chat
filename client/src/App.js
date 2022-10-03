@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Chat from "./pages/chatRoom";
 import SetAvatar from "./pages/SetAvatar";
+import './app.scss';
 
 function App() {
   return (
