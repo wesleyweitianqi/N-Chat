@@ -40,9 +40,10 @@ export default function ChatInput({ handleSendMsg }) {
             </div>
           </div>
         </div>
-
+       
         <form className="input-container" onSubmit={(event) => sendChat(event)}>
           <input
+            className="input"
             type="text"
             placeholder="type your message here"
             onChange={(e) => setMsg(e.target.value)}
@@ -52,6 +53,7 @@ export default function ChatInput({ handleSendMsg }) {
             <IoMdSend />
           </button>
         </form>
+        
       </div>
     </>
   );

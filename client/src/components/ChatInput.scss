@@ -1,8 +1,9 @@
 .input-grid {
   height: 45px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  
   padding: 10px;
   background-color: #130f28;
   padding: 0 2rem;
@@ -23,6 +24,7 @@
       }
       aside.EmojiPickerReact.epr-main {
         top: -450px;
+        
       }
       .emoji-picker-react {
         // position: absolute;
@@ -53,45 +55,52 @@
         }
       }
     }
-    .input-container {
+  }
+  .input-container {
+    
+    border-radius: 2rem;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    background-color: #ffffff34;
+    justify-content: space-between;
+
+    .input {
+      float:right;
+      width: 90%;
+      background-color:transparent;
+      color: white;
+      border: none;
+      padding-left: 1rem;
+      font-size: 1.2rem;
+      &::selection {
+        background-color: #9a86f3;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .submitBtn {
+      padding: 0.3rem 2rem;
       border-radius: 2rem;
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 2rem;
-      background-color: #ffffff34;
-      justify-content: space-between;
+      background-color: #9a86f3;
+      border: none;
 
-      input {
-        width: 90%;
-        background-color: transparent;
+      svg {
+        font-size: 2rem;
         color: white;
-        border: none;
-        padding-left: 1rem;
-        font-size: 1.2rem;
-        &::selection {
-          background-color: #9a86f3;
-        }
-        &:focus {
-          outline: none;
-        }
       }
-      button {
-        padding: 0.3rem 2rem;
-        border-radius: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #9a86f3;
-        border: none;
-
-        svg {
-          font-size: 2rem;
-          color: white;
-        }
-        &:hover {
-          background-color: purple;
-        }
+      &:hover {
+        background-color: purple;
       }
     }
   }
+}
+
+.chat-input {
+  background-color: transparent;
 }

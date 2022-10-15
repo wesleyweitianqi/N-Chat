@@ -3192,7 +3192,7 @@
     "strip-ansi" "^6.0.0"
     "wrap-ansi" "^7.0.0"
 
-"clsx@^1.1.1", "clsx@^1.2.1":
+"clsx@^1.1.1":
   "integrity" "sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg=="
   "resolved" "https://registry.npmjs.org/clsx/-/clsx-1.2.1.tgz"
   "version" "1.2.1"
@@ -3945,15 +3945,10 @@
   "resolved" "https://registry.npmjs.org/emittery/-/emittery-0.8.1.tgz"
   "version" "0.8.1"
 
-"emoji-picker-react@^4.0.5":
-  "integrity" "sha512-pJjrz4vUQrDcBN1pDSgC2kyqdfgKESVyLDlMHuDFy9tYB8UomR2OTLhx0ArTFDKsrhxIFj588Gu/rfLacsznhg=="
-  "resolved" "https://registry.npmjs.org/emoji-picker-react/-/emoji-picker-react-4.0.5.tgz"
-  "version" "4.0.5"
-  dependencies:
-    "clsx" "^1.2.1"
-    "eslint-plugin-jsx-a11y" "^6.6.1"
-    "eslint-plugin-react" "^7.31.8"
-    "eslint-plugin-react-hooks" "^4.6.0"
+"emoji-picker-react@^3.5.1":
+  "integrity" "sha512-cuSthFAvUO8Q1N7KJPEgZ7N0JNIWPKgN5GUmKe71UlSD4qFYI/p05RT9nohlWOq6YSFhEy2mI/60zBZiaku4mg=="
+  "resolved" "https://registry.npmjs.org/emoji-picker-react/-/emoji-picker-react-3.5.1.tgz"
+  "version" "3.5.1"
 
 "emoji-regex@^8.0.0":
   "integrity" "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A=="
@@ -4179,7 +4174,7 @@
   dependencies:
     "@typescript-eslint/experimental-utils" "^5.0.0"
 
-"eslint-plugin-jsx-a11y@^6.5.1", "eslint-plugin-jsx-a11y@^6.6.1":
+"eslint-plugin-jsx-a11y@^6.5.1":
   "integrity" "sha512-sXgFVNHiWffBq23uiS/JaP6eVR622DqwB4yTzKvGZGcPq6/yZ3WmOZfuBks/vHWo9GaFOqC2ZK4i6+C35knx7Q=="
   "resolved" "https://registry.npmjs.org/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.6.1.tgz"
   "version" "6.6.1"
@@ -4198,12 +4193,12 @@
     "minimatch" "^3.1.2"
     "semver" "^6.3.0"
 
-"eslint-plugin-react-hooks@^4.3.0", "eslint-plugin-react-hooks@^4.6.0":
+"eslint-plugin-react-hooks@^4.3.0":
   "integrity" "sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g=="
   "resolved" "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.6.0.tgz"
   "version" "4.6.0"
 
-"eslint-plugin-react@^7.27.1", "eslint-plugin-react@^7.31.8":
+"eslint-plugin-react@^7.27.1":
   "integrity" "sha512-5lBTZmgQmARLLSYiwI71tiGVTLUuqXantZM6vlSY39OaDSV0M7+32K5DnLkmFrwTe+Ksz0ffuLUC91RUviVZfw=="
   "resolved" "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.31.8.tgz"
   "version" "7.31.8"
