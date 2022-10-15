@@ -2,14 +2,14 @@
 
 N-chat is a full stack web application built with Express and React that allow users to talk freely in chatRoom.
 
-##Final Product
+## Final Product
 !["Register"](https://github.com/wesleyweitianqi/N-Chat/blob/master/doc/Register.gif?raw=true)
 !["Chat"](https://github.com/wesleyweitianqi/N-Chat/blob/master/doc/Chat.gif?raw=true)
 
 
 ## Dependencies:
 
-  ["Server"]
+  Server
   - "bcryptjs": "^2.4.3",
   - "body-parser": "^1.20.0",
   - "cors": "^2.8.5",
@@ -21,7 +21,7 @@ N-chat is a full stack web application built with Express and React that allow u
   - "jquery": "^3.6.1",
   - "nodemon": "^2.0.20"
 
-  ["Client"]
+  Client
   - "@testing-library/jest-dom": "^5.16.5",
   - "@testing-library/react": "^13.4.0",
   - "@testing-library/user-event": "^13.5.0",
