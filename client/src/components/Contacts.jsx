@@ -5,7 +5,7 @@ import Logo from "../doc/logo.svg";
 
 export default function Contacts(props) {
   const {contacts, changeChat } = props;
-  const [currentUserName, setCurrentUserName] = useState(undefined);
+  const [currentUserName, setCurrentUserName] = useState({});
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
   useEffect( () => {

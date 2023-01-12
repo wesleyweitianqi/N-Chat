@@ -52,7 +52,7 @@ function SetAvatar() {
 
   useEffect(()=> {
     const data = [];
-    for (let i =0; i < 2; i ++ ) {
+    for (let i =0; i < 4; i ++ ) {
       axios.get(`${api}/${Math.round(Math.random()*1000)}`).then(image=>{
         const buffer = new Buffer(image.data);
         data.push(buffer.toString("base64"))
@@ -112,7 +112,6 @@ const Container = styled.div`
   gap: 3rem;
   background-color: #131324;
   height: 100vh;
-  width: 100vw;
   .loader {
     max-inline-size: 100%;
   }
