@@ -1,6 +1,7 @@
 const User = require('../models/useModel')
 const bcrypt = require('bcryptjs');
 
+
 module.exports.register = async (req, res, next) => {
   try{
     const { username, email, password }= req.body;
@@ -14,6 +15,7 @@ module.exports.register = async (req, res, next) => {
       email,
       password: hashpassword
     })
+    user.save()
     delete user.password;
     return res.json({status: true, user})
   } catch (err) {
