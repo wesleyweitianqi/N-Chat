@@ -94,7 +94,7 @@ const ChatContainer = (props) => {
                 }`}
               >
                 <div className="content ">
-                  <p>{message.message}</p>
+                  <p style={{marginBottom:0}}>{message.message}</p>
                 </div>
               </div>
             </div>

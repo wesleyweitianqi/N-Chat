@@ -63,7 +63,7 @@ export default function Contacts(props) {
               <h2>{currentUserName}</h2>
             </div>
           </div>
-        </Container>
+        </Container>     
       )}
     </>
   );
@@ -73,10 +73,11 @@ const Container = styled.div`
   grid-template-rows: 10% 75% 15%;
   overflow: hidden;
   background-color: #080420;
+  position:relative;
   .brand {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    /* gap: 1rem; */
     justify-content: center;
     img {
       height: 2rem;
@@ -91,7 +92,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    gap: 0.8rem;
+    gap: 0.4rem;
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
@@ -102,22 +103,22 @@ const Container = styled.div`
     }
     .contact {
       background-color: #ffffff34;
-      min-height: 5rem;
+      min-height: 3.5rem;
+      width:100%;
       cursor: pointer;
-      width: 90%;
       border-radius: 0.2rem;
-      padding: 0.4rem;
       display: flex;
-      gap: 1rem;
+      /* gap: 1rem; */
       align-items: center;
       transition: 0.5s ease-in-out;
       .avatar {
         img {
-          height: 3rem;
+          height: 2.5rem;
         }
       }
       .username {
         h3 {
+          font-size:1.2rem;
           color: white;
         }
       }
@@ -127,11 +128,14 @@ const Container = styled.div`
     }
   }
   .current-user {
+    position:absolute;
+    bottom: 0;
+    height:5rem;
+    width:100%;
     background-color: #0d0d30;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
+    justify-content:space-around;
     .avatar {
       img {
         height: 4rem;
@@ -140,9 +144,9 @@ const Container = styled.div`
     }
     .username {
       h2 {
+        font-size: 1.2rem;
         color: white;
       }
     }
-
   }
 `;

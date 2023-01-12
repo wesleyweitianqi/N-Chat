@@ -32,31 +32,34 @@ export default function ChatInput({ handleSendMsg }) {
       {showEmojiPicker && (
         <Picker height={400} width={300} onEmojiClick={handleEmojiClick} />
       )}
-      <div className="input-grid">
-        <div className="button-container">
-          <div className="emoji">
-            <div className="Bs">
-              <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-1">
+            <div className="emoji">
+              <div className="Bs">
+                <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
+              </div>
             </div>
           </div>
+          <div className="col-11">
+            <form
+              className="input-container"
+              onSubmit={(event) => sendChat(event)}
+            >
+              <input
+                className="input"
+                type="text"
+                placeholder="type your message here"
+                onChange={(e) => setMsg(e.target.value)}
+                value={msg}
+              />
+              <button className="submitBtn" type="submit">
+                <IoMdSend />
+              </button>
+            </form>
+          </div>
         </div>
-       
-        <form className="input-container" onSubmit={(event) => sendChat(event)}>
-          <input
-            className="input"
-            type="text"
-            placeholder="type your message here"
-            onChange={(e) => setMsg(e.target.value)}
-            value={msg}
-          />
-          <button className="submitBtn" type="submit">
-            <IoMdSend />
-          </button>
-        </form>
-        
       </div>
     </>
   );
 }
-
-

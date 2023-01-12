@@ -48,13 +48,14 @@ const Chat = () => {
     }
   }, [currentUser])
   return (
-  
+      <div className="container-fluid">
       <div className="chat-container">
         <div className="container"> 
-          <Contacts className="grid-item-1" contacts={contacts} changeChat={handleChatChange} />
+          <Contacts className=" grid-item-1" contacts={contacts} changeChat={handleChatChange} />
           {currentChat === undefined ? (<Welcome className='grid-item-2'/>) 
           : (<ChatContainer className='grid-item-2' currentChat={currentChat} socketRef={socketRef} />)}
         </div>
+      </div>
       </div>
   
   );

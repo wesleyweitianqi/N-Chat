@@ -1,12 +1,4 @@
-.input-grid {
-  height: 45px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 9fr;
-  
-  padding: 10px;
-  background-color: #130f28;
-  padding: 0 2rem;
+
 
   .button-container {
     display: flex;
@@ -15,44 +7,44 @@
     color: white;
     gap: 1rem;
 
-    .emoji {
-      svg {
-        margin-right: 30px;
-        font-size: 1.5rem;
-        color: #ffff00c8;
-        cursor: pointer;
-      }
-      aside.EmojiPickerReact.epr-main {
-        top: -450px;
-        
-      }
-      .emoji-picker-react {
-        // position: absolute;
-        // top:200px;
+  }
+  .emoji {
+    svg {
+      margin-right: 30px;
+      font-size: 1.5rem;
+      color: #ffff00c8;
+      cursor: pointer;
+    }
+    aside.EmojiPickerReact.epr-main {
+      top: -450px;
+      
+    }
+    .emoji-picker-react {
+      // position: absolute;
+      // top:200px;
 
+      background-color: #080420;
+      box-shadow: 0 5px 10px #9a86f3;
+      border-color: #9a86f3;
+      .emoji-scroll-wrapper::-webkit-scrollbar {
         background-color: #080420;
-        box-shadow: 0 5px 10px #9a86f3;
-        border-color: #9a86f3;
-        .emoji-scroll-wrapper::-webkit-scrollbar {
-          background-color: #080420;
-          width: 5px;
-          &-thumb {
-            background-color: #9a86f3;
-          }
+        width: 5px;
+        &-thumb {
+          background-color: #9a86f3;
         }
+      }
 
-        .emoji-categories {
-          button {
-            filter: contrast(0);
-          }
+      .emoji-categories {
+        button {
+          filter: contrast(0);
         }
-        .emoji-search {
-          background-color: transparent;
-          border-color: #9a86f3;
-        }
-        .emoji-group:before {
-          background-color: #080420;
-        }
+      }
+      .emoji-search {
+        background-color: transparent;
+        border-color: #9a86f3;
+      }
+      .emoji-group:before {
+        background-color: #080420;
       }
     }
   }
@@ -99,7 +91,7 @@
       }
     }
   }
-}
+
 
 .chat-input {
   background-color: transparent;
