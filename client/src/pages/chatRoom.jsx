@@ -43,8 +43,8 @@ const Chat = () => {
   
   useEffect(()=> {
     if (currentUser) {
-      socketRef.current =io('http://localhost:8000')
-      socketRef.current.emit('add-user', currentUser._id)
+      socketRef.current =io('http://localhost:8000');  //socket connection
+      socketRef.current.emit('add-user', currentUser._id); //send message to server with userID
     }
   }, [currentUser])
   return (

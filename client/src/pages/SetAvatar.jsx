@@ -42,7 +42,7 @@ function SetAvatar() {
           user.isAvatarImageSet = true;
           user.avatarImage = res.data.image;
           localStorage.setItem("currentUser", JSON.stringify(user))
-          navigate("/chat")
+          navigate("/")
         } else {
           toast.error("Error setting avatar, Please try again", toastOption);
         }

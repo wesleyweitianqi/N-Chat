@@ -51,7 +51,7 @@ function Register() {
       axios.post(registerRoute, {username, email, password}).then(res => {
         if(res.data.status) {
           localStorage.setItem("currentUser", JSON.stringify(res.data.user))
-          navigate("/chat")
+          navigate("/")
         } 
         if(!res.data.statue) {
           toast.error(res.data.msg, toastOption)
@@ -66,7 +66,7 @@ function Register() {
 
   useEffect(()=> {
     if(localStorage.getItem('currentUser')) {
-      navigate('/chat')
+      navigate('/')
     }
   })
   return (

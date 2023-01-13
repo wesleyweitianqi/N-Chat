@@ -44,9 +44,7 @@ io.on('connection', (socket)=> {
     sockets.set(userId, socket.id)
   })
   
-
   socket.on('send-msg', (data)=> {
-    console.log(data)
     const sendUserSocket = sockets.get(data.to)
     if (sendUserSocket) {
       console.log(sendUserSocket)

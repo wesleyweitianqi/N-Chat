@@ -9,6 +9,7 @@ import "./ChatContainer.scss";
 const ChatContainer = (props) => {
   const { currentChat, socketRef } = props;
   const [messages, setMessages] = useState([]);
+  console.log("🚀 ~ file: ChatContainer.jsx:12 ~ ChatContainer ~ messages", messages)
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
@@ -54,8 +55,9 @@ const ChatContainer = (props) => {
   useEffect(() => {
     if (socketRef.current) {
       socketRef.current.on("msg-recieve", (msg) => {
-        console.log(msg);
+       
         setArrivalMessage({ fromSelf: false, message: msg });
+        console.log("🚀 ~ file: ChatContainer.jsx:61 ~ socketRef.current.on ~ msg", msg)
       });
     }
   }, []);
