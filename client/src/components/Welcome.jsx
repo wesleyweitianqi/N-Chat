@@ -5,11 +5,13 @@ import Robot from "../doc/robot.gif";
 export default function Welcome() {
   const [userName, setUserName] = useState("");
   useEffect(() => {
-    setUserName(
-      JSON.parse(
-        localStorage.getItem("currentUser")
-      ).username
-    );
+    const data = JSON.parse(localStorage.getItem("currentUser")) 
+    if(data) {
+
+      setUserName(
+        data.username
+      );
+    }
   }, []);
   return (
     <Container>

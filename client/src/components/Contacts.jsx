@@ -16,8 +16,12 @@ export default function Contacts(props) {
     const data = JSON.parse(
       localStorage.getItem("currentUser")
     );
-    setCurrentUserName(data.username);
-    setCurrentUserImage(data.avatarImage);
+    console.log("🚀 ~ file: Contacts.jsx:19 ~ useEffect ~ data", data)
+    if(data) {
+
+      setCurrentUserName(data.username);
+      setCurrentUserImage(data.avatarImage);
+    }
   }, []);
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
