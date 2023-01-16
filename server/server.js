@@ -9,6 +9,7 @@ const authRoutes = require('./routes/auth');
 const messageRoute = require('./routes/messageRoute')
 const http = require('http');
 const socketio = require('socket.io');
+const { isModuleNamespaceObject } = require('util/types');
 const app = express();
 const server = http.createServer(app)
 const io = socketio(server, {
@@ -59,3 +60,5 @@ app.get("/", (req, res)=> {
 })
 
 server.listen(process.env.PORT, ()=> console.log(`Server is listenning on port ${PORT}`));
+
+module.exports = app;

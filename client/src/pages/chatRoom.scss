@@ -15,8 +15,14 @@
     height:100%;
     background-color: #00000076;
     display: grid;
-    grid-template-columns: 25% 75%;
+    @media (min-width:577px) {
+      grid-template-columns: 25% 75%;
+
+    }
     grid-template-areas: "contacts chats";
+    @media (max-width:576px) {
+      grid-template-rows:10% 90%;
+    }
   }
 }
 
