@@ -12,11 +12,11 @@ const ChatContainer = (props) => {
   console.log("🚀 ~ file: ChatContainer.jsx:12 ~ ChatContainer ~ messages", messages)
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
-
+  const url= process.env.APP_URL;
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("currentUser"));
     axios
-      .post("http://localhost:8000/api/messages/getmsg", {
+      .post(`${url}/messages/getmsg`, {
         from: data._id,
         to: currentChat._id,
       })
@@ -41,7 +41,9 @@ const ChatContainer = (props) => {
       from: data._id,
       msg,
     });
-    await axios.post("http://localhost:8000/api/messages/addmsg", {
+
+    const url = process.env.APP_URL
+    await axios.post(`${url}/messages/addmsg`, {
       from: data._id,
       to: currentChat._id,
       message: msg,
