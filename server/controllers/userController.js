@@ -68,6 +68,20 @@ module.exports.register = async (req, res, next) => {
     }
   }
 
+  module.exports.users = async (req,res,next) => {
+    console.log("getallUsers")
+    try{
+      const users = await User.find({}).select([
+        "email",
+        "username",
+        'avatarImage',
+      ])
+      return res.send(JSON.stringify(users))
+    }catch(err) {
+      next(err)
+    }
+  }
+
   module.exports.logOut = (req, res, next) => {
     try {
       if (!req.params.id){

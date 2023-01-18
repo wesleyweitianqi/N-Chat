@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth'); 
-const messageRoute = require('./routes/messageRoute')
+const messageRoute = require('./routes/messageRoute');
+const usersRoute = require('./routes/users');
 const http = require('http');
 const socketio = require('socket.io');
 const { isModuleNamespaceObject } = require('util/types');
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.static(__dirname+'/static'))
 app.use("/api/auth", authRoutes)
+app.use("/api/getallusers", usersRoute);
 app.use('/api/messages', messageRoute);
 
 mongoose.connect(process.env.MONGO_URL, {
