@@ -24,6 +24,7 @@ export default function Contacts(props) {
   };
   console.log("currentSelected", currentSelected);
 
+  
   return (
     <>
       {currentUserImage && currentUserImage && (

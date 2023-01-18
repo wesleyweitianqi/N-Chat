@@ -8,8 +8,6 @@ import Welcome from "../components/Welcome";
 import { getAllUsersRoute } from "../utils/apiRoutes";
 import { io } from "socket.io-client";
 import "./chatRoom.scss";
-const dotenv = require('dotenv');
-const env = dotenv.config()
 
 const Chat = () => {
   const [data, setData] = useState([]);
@@ -18,8 +16,7 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
   const socketRef = useRef();
-  const host = process.env.REACT_APP_API_URL;
-  console.log("🚀 ~ file: chatRoom.jsx:21 ~ Chat ~ host", host);
+
 
   useEffect(() => {
     if (!localStorage.getItem("currentUser")) {

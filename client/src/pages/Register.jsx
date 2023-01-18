@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { registerRoute } from '../utils/apiRoutes';
+
 function Register() {
   const [val, setVal] =useState({
     username: "",
@@ -62,6 +63,7 @@ function Register() {
     e.preventDefault();
     setVal({...val, [e.target.name]: e.target.value})
   }
+
 
   useEffect(()=> {
     if(localStorage.getItem('currentUser')) {
