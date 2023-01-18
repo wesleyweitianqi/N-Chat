@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon --exec babel-node server.js",
-    "build": "babel src -d dist",
-    "start": "node dist/server.js",
+    "start": "node server.js",
     "both-dev": "concurrently \"npm run dev\" \"npm --prefix ../client/ run dev\""
   },
   "keywords": [],
