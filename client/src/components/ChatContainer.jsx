@@ -14,7 +14,7 @@ const ChatContainer = (props) => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("currentUser"));
     axios
-      .post(`${url}/messages/getmsg`, {
+      .post(`${url}/api/messages/getmsg`, {
         from: data._id,
         to: currentChat._id,
       })
@@ -40,7 +40,7 @@ const ChatContainer = (props) => {
       msg,
     });
 
-    const url = process.env.REACT_APP_API_URL;
+    // const url = process.env.REACT_APP_API_URL;
     await axios.post(`${url}/api/messages/addmsg`, {
       from: data._id,
       to: currentChat._id,
