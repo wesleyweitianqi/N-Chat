@@ -36,7 +36,7 @@ function SetAvatar() {
     } else {
       const user = JSON.parse(localStorage.getItem("currentUser"))
       const host = process.env.REACT_APP_API_URL
-      axios.post(`${host}/${user._id}`, {avatarImage: avatars[selectedAvatar]} ).then(res => {
+      axios.post(`${host}/api/setAvatar/${user._id}`, {avatarImage: avatars[selectedAvatar]} ).then(res => {
         
         if (res.data.isSet) {
           user.isAvatarImageSet = true;
