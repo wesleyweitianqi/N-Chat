@@ -10,7 +10,7 @@ const ChatContainer = (props) => {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
-  const url= process.env.REACT_API_URL;
+  const url= process.env.REACT_APP_API_URL;
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("currentUser"));
     axios
