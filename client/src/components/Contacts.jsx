@@ -50,7 +50,7 @@ export default function Contacts(props) {
       
      }, 1000);
   });
-  console.log("🚀 ~ file: Contacts.jsx:46 ~ contactsDisplay ~ contactsDisplay", contactsDisplay.current)
+  console.log("🚀 ~ file: Contacts.jsx:46 ~ contactsDisplay ~ contactsDisplay", contactsDisplay)
   
   return (
     <>
