@@ -40,7 +40,7 @@ const ChatContainer = (props) => {
       msg,
     });
 
-    const url = process.env.APP_URL
+    const url = process.env.REACT_APP_API_URL;
     await axios.post(`${url}/api/messages/addmsg`, {
       from: data._id,
       to: currentChat._id,
