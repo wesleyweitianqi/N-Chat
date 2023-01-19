@@ -12,7 +12,7 @@ const ChatContainer = (props) => {
   console.log("🚀 ~ file: ChatContainer.jsx:12 ~ ChatContainer ~ messages", messages)
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
-  const url= process.env.APP_URL;
+  const url= process.env.REACT_API_URL;
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("currentUser"));
     axios
