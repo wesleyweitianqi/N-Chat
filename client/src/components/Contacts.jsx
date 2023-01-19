@@ -23,31 +23,34 @@ export default function Contacts(props) {
   };
   console.log("currentSelected", currentSelected);
   const contactsDisplay = useRef(null)
-  useEffect(()=> {
-     contactsDisplay.current = contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
-      return (
-        <div
-          key={index}
-          className={`contact ${
-            index === currentSelected ? "selected" : ""
-          }`}
-          onClick={() => changeCurrentChat(index, contact)}
-        >
-          <div className="avatar">
-            <img
-              src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-              alt=""
-            />
-          </div>
-          <div className="username">
-            <h3>{contact.username}</h3>
-          </div>
-        </div>
-      );
-    })
 
-  },[contacts]);
-  console.log("🚀 ~ file: Contacts.jsx:46 ~ contactsDisplay ~ contactsDisplay", contactsDisplay)
+  useEffect(()=> {
+     setTimeout(() => {
+       contactsDisplay.current = contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
+        return (
+          <div
+            key={index}
+            className={`contact ${
+              index === currentSelected ? "selected" : ""
+            }`}
+            onClick={() => changeCurrentChat(index, contact)}
+          >
+            <div className="avatar">
+              <img
+                src={`data:image/svg+xml;base64,${contact.avatarImage}`}
+                alt=""
+              />
+            </div>
+            <div className="username">
+              <h3>{contact.username}</h3>
+            </div>
+          </div>
+        );
+      })
+      
+     }, 1000);
+  });
+  console.log("🚀 ~ file: Contacts.jsx:46 ~ contactsDisplay ~ contactsDisplay", contactsDisplay.current)
   
   return (
     <>
