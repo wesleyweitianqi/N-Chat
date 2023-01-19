@@ -8,8 +8,7 @@ export default function Contacts(props) {
   const [currentUserName, setCurrentUserName] = useState({ username: "" });
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
-  // const [contactList, setContactList] = useState(contacts);
-
+  
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("currentUser"));
     console.log("🚀 ~ file: Contacts.jsx:19 ~ useEffect ~ data", data);
