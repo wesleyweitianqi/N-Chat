@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Logo from "../doc/logo.svg";
 
@@ -22,9 +22,9 @@ export default function Contacts(props) {
     changeChat(contact);
   };
   console.log("currentSelected", currentSelected);
-
+  const contactsDisplay = useRef(null)
   useEffect(()=> {
-    const contactsDisplay = contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
+     contactsDisplay.current = contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
       return (
         <div
           key={index}
@@ -58,7 +58,7 @@ export default function Contacts(props) {
             <h3>snappy</h3>
           </div>
           <div className="contacts">
-            {contactsDisplay}
+            {contactsDisplay.current}
           </div>
           <div className="current-user">
             <div className="avatar">
