@@ -35,8 +35,8 @@ function SetAvatar() {
       toast.error("Please select an avatar", toastOption)
     } else {
       const user = JSON.parse(localStorage.getItem("currentUser"))
-      console.log(user)
-      axios.post(`http://localhost:8000/api/auth/setAvatar/${user._id}`, {avatarImage: avatars[selectedAvatar]} ).then(res => {
+      const host = process.env.REACT_APP_API_URL
+      axios.post(`${host}/${user._id}`, {avatarImage: avatars[selectedAvatar]} ).then(res => {
         
         if (res.data.isSet) {
           user.isAvatarImageSet = true;
