@@ -8,7 +8,7 @@ export default function Contacts(props) {
   const [currentUserName, setCurrentUserName] = useState({ username: "" });
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
-  
+  const [contactsDisplay, setContactsDisplay] = useState(undefined)
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("currentUser"));
     console.log("🚀 ~ file: Contacts.jsx:19 ~ useEffect ~ data", data);
@@ -22,11 +22,11 @@ export default function Contacts(props) {
     changeChat(contact);
   };
   console.log("currentSelected", currentSelected);
-  const contactsDisplay = useRef(null)
+  
 
   useEffect(()=> {
      setTimeout(() => {
-       contactsDisplay.current = contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
+       setContactsDisplay(contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
         return (
           <div
             key={index}
@@ -46,7 +46,7 @@ export default function Contacts(props) {
             </div>
           </div>
         );
-      })
+      }))
       
      }, 1000);
   });
@@ -61,7 +61,7 @@ export default function Contacts(props) {
             <h3>snappy</h3>
           </div>
           <div className="contacts">
-            {contactsDisplay.current}
+            {contactsDisplay}
           </div>
           <div className="current-user">
             <div className="avatar">
