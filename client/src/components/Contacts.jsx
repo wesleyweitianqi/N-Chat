@@ -22,27 +22,31 @@ export default function Contacts(props) {
     changeChat(contact);
   };
   console.log("currentSelected", currentSelected);
-  const contactsDisplay = contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
-    return (
-      <div
-        key={index}
-        className={`contact ${
-          index === currentSelected ? "selected" : ""
-        }`}
-        onClick={() => changeCurrentChat(index, contact)}
-      >
-        <div className="avatar">
-          <img
-            src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-            alt=""
-          />
+
+  useEffect(()=> {
+    const contactsDisplay = contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
+      return (
+        <div
+          key={index}
+          className={`contact ${
+            index === currentSelected ? "selected" : ""
+          }`}
+          onClick={() => changeCurrentChat(index, contact)}
+        >
+          <div className="avatar">
+            <img
+              src={`data:image/svg+xml;base64,${contact.avatarImage}`}
+              alt=""
+            />
+          </div>
+          <div className="username">
+            <h3>{contact.username}</h3>
+          </div>
         </div>
-        <div className="username">
-          <h3>{contact.username}</h3>
-        </div>
-      </div>
-    );
-  })
+      );
+    })
+
+  },[contacts]);
   console.log("🚀 ~ file: Contacts.jsx:46 ~ contactsDisplay ~ contactsDisplay", contactsDisplay)
   
   return (
