@@ -30,7 +30,7 @@ const Chat = () => {
   useEffect(() => {
     if (currentUser) {
       if (currentUser.isAvatarImageSet) {
-        axios.get(`${getAllUsersRoute}/api/auth/allusers/${currentUser._id}`).then((res) => {
+        axios.get(`${getAllUsersRoute}/${currentUser._id}`).then((res) => {
           setContacts([...contacts, res.data]);
         });
       } else {
