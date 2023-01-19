@@ -2,14 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import Logout from "./Logout";
-import styled from "styled-components";
 import ChatInput from "./ChatInput";
 import "./ChatContainer.scss";
 
 const ChatContainer = (props) => {
   const { currentChat, socketRef } = props;
   const [messages, setMessages] = useState([]);
-  console.log("🚀 ~ file: ChatContainer.jsx:12 ~ ChatContainer ~ messages", messages)
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const url= process.env.REACT_API_URL;
@@ -43,7 +41,7 @@ const ChatContainer = (props) => {
     });
 
     const url = process.env.APP_URL
-    await axios.post(`${url}/messages/addmsg`, {
+    await axios.post(`${url}/api/messages/addmsg`, {
       from: data._id,
       to: currentChat._id,
       message: msg,
@@ -59,7 +57,6 @@ const ChatContainer = (props) => {
       socketRef.current.on("msg-recieve", (msg) => {
        
         setArrivalMessage({ fromSelf: false, message: msg });
-        console.log("🚀 ~ file: ChatContainer.jsx:61 ~ socketRef.current.on ~ msg", msg)
       });
     }
   }, []);
