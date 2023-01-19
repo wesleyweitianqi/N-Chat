@@ -13,6 +13,7 @@ const Chat = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
+  console.log("🚀 ~ file: chatRoom.jsx:16 ~ Chat ~ contacts", contacts)
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
   const socketRef = useRef();
@@ -29,7 +30,7 @@ const Chat = () => {
   useEffect(() => {
     if (currentUser) {
       if (currentUser.isAvatarImageSet) {
-        axios.get(`${getAllUsersRoute}/${currentUser._id}`).then((res) => {
+        axios.get(`${getAllUsersRoute}/api/auth/allusers/${currentUser._id}`).then((res) => {
           setContacts([...contacts, res.data]);
         });
       } else {
@@ -37,6 +38,7 @@ const Chat = () => {
       }
     }
   }, [currentUser]);
+  
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
