@@ -12,7 +12,7 @@ const  Logout =()=> {
       localStorage.getItem("currentUser")
     );
     
-    const data = await axios.get(`${logoutRoute}/${id._id}`);
+    const data = await axios.get(`${logoutRoute}/api/auth/logout/${id._id}`);
     if (data.status === 200) {
       localStorage.clear();
       navigate("/login");
