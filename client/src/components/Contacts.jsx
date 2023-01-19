@@ -45,7 +45,7 @@ export default function Contacts(props) {
                 >
                   <div className="avatar">
                     <img
-                      src={`data:image/svg+xml;base64,${contact.avatarImage}` || ""}
+                      src={`data:image/svg+xml;base64,${contact.avatarImage}`}
                       alt=""
                     />
                   </div>
