@@ -34,7 +34,7 @@ export default function Contacts(props) {
             <h3>snappy</h3>
           </div>
           <div className="contacts">
-            {contacts.map((contact, index) => {
+            {contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
               return (
                 <div
                   key={index}
