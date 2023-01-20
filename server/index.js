@@ -10,12 +10,13 @@ const messageRoute = require('./routes/messageRoute');
 const usersRoute = require('./routes/users');
 const http = require('http');
 const socketio = require('socket.io');
-const { isModuleNamespaceObject } = require('util/types');
 const app = express();
-const server = http.createServer(app)
+const server = http.createServer(app);
+
+
 const io = socketio(server, {
   cors: {
-    origin:'https://n-chat-one.vercel.app',
+    origin:"http://n-chat-one.vercel.app",
     Credentials:true
   }
 })

@@ -1,57 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Logo from "../doc/logo.svg";
+import defaultAvatar from '../doc/defaultAvatar.png';
+import axios from "axios";
 
 export default function Contacts(props) {
-  const { contacts, changeChat } = props;
-  console.log("🚀 ~ file: Contacts.jsx:8 ~ Contacts ~ contacts", contacts);
+  const { changeChat } = props;
+ 
+  
   const [currentUserName, setCurrentUserName] = useState({ username: "" });
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
-  const [contactsDisplay, setContactsDisplay] = useState(undefined)
+  const [list, setList] = useState([])
+  
+ 
+ 
+  //get current user from localStorage
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("currentUser"));
-    console.log("🚀 ~ file: Contacts.jsx:19 ~ useEffect ~ data", data);
     if (data) {
       setCurrentUserName(data.username);
       setCurrentUserImage(data.avatarImage);
+      const serverUrl = process.env.REACT_APP_API_URL
+      axios.get(`${serverUrl}/api/auth/allusers/${data._id}`).then((res) => {
+        setList(res.data);
+    })
     }
   }, []);
+
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);
   };
-  console.log("currentSelected", currentSelected);
   
 
-  useEffect(()=> {
-     setTimeout(() => {
-       setContactsDisplay(contacts.filter(contact=> !!contact.avatarImage).map((contact, index) => {
-        return (
-          <div
-            key={index}
-            className={`contact ${
-              index === currentSelected ? "selected" : ""
-            }`}
-            onClick={() => changeCurrentChat(index, contact)}
-          >
-            <div className="avatar">
-              <img
-                src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-                alt=""
-              />
-            </div>
-            <div className="username">
-              <h3>{contact.username}</h3>
-            </div>
-          </div>
-        );
-      }))
-      
-     }, 1000);
-  });
-  console.log("🚀 ~ file: Contacts.jsx:46 ~ contactsDisplay ~ contactsDisplay", contactsDisplay)
-  
   return (
     <>
       {currentUserImage && currentUserImage && (
@@ -61,7 +43,30 @@ export default function Contacts(props) {
             <h3>snappy</h3>
           </div>
           <div className="contacts">
-            {contactsDisplay}
+           {list.map((contact,index)=> {
+            let avatarImg = `data:image/svg+xml;base64,${contact.avatarImage}`
+            if (!contact.avatarImage) {
+              avatarImg = defaultAvatar
+            }
+            return (<div
+              key={index}
+              className={`contact ${
+                index === currentSelected ? "selected" : ""
+              }`}
+              onClick={() => changeCurrentChat(index, contact)}
+            >
+              <div className="avatar">
+                <img
+                  src={avatarImg}
+                  alt=""
+                />
+              </div>
+              <div className="username">
+                <h3>{contact.username}</h3>
+              </div>
+            </div>)
+           })}
+           
           </div>
           <div className="current-user">
             <div className="avatar">
@@ -128,26 +133,26 @@ const Container = styled.div`
       /* gap: 1rem; */
       align-items: center;
       transition: 0.5s ease-in-out;
-      @media (max-width:576px) {
-        min-height:1.5rem;
+      @media (max-width: 576px) {
+        min-height: 1.5rem;
       }
       .avatar {
         img {
-          @media (max-width: 576px) {  
-              height: 1.2rem;
+          @media (max-width: 576px) {
+            height: 1.2rem;
           }
           height: 2.5rem;
         }
       }
       .username {
         h3 {
-         
           font-size: 1.2rem;
           color: white;
-          @media (max-width: 576px) {  
-              font-size: 0.8rem;
-              word-break:break-all;
-              margin-bottom:0;
+          @media (max-width: 576px) {
+            overflow:hidden;
+            font-size: 0.8rem;
+            word-break: break-all;
+            margin-bottom: 0;
           }
         }
       }
