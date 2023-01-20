@@ -16,12 +16,11 @@
       cursor: pointer;
     }
     aside.EmojiPickerReact.epr-main {
-      top: -450px;
+      position: absolute;
+      top:12vh;
       
     }
     .emoji-picker-react {
-      position: absolute;
-      top:30vh;
 
       background-color: #080420;
       box-shadow: 0 5px 10px #9a86f3;
