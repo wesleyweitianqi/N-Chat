@@ -15,13 +15,8 @@
       color: #ffff00c8;
       cursor: pointer;
     }
-    aside.EmojiPickerReact.epr-main {
-      position: absolute;
-      top:12vh;
-      
-    }
     .emoji-picker-react {
-
+      
       background-color: #080420;
       box-shadow: 0 5px 10px #9a86f3;
       border-color: #9a86f3;
@@ -32,7 +27,7 @@
           background-color: #9a86f3;
         }
       }
-
+      
       .emoji-categories {
         button {
           filter: contrast(0);
@@ -56,7 +51,7 @@
     gap: 2rem;
     background-color: #ffffff34;
     justify-content: space-between;
-
+    
     .input {
       float:right;
       width: 90%;
@@ -80,7 +75,7 @@
       align-items: center;
       background-color: #9a86f3;
       border: none;
-
+      
       svg {
         font-size: 2rem;
         color: white;
@@ -90,8 +85,14 @@
       }
     }
   }
+  
+  
+  .chat-input {
+    background-color: transparent;
+  }
+  
+  aside.EmojiPickerReact.epr-main {
+    position: absolute;
+    top:12vh;
 
-
-.chat-input {
-  background-color: transparent;
-}
+  }
