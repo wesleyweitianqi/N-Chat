@@ -16,7 +16,7 @@ const server = http.createServer(app);
 
 const io = socketio(server, {
   cors: {
-    origin:"http://n-chat-one.vercel.app",
+    origin:"https://n-chat-one.vercel.app",
     Credentials:true
   }
 })
