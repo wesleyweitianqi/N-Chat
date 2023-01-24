@@ -109,7 +109,7 @@ const FormContainer = styled.div`
     }
   }
   form {
-    width:40vw;
+    width:60vw;
     margin:auto;
     display: flex;
     flex-direction: column;
@@ -117,6 +117,7 @@ const FormContainer = styled.div`
     background-color: #788fc676;
     border-radius: 2rem;
     padding: 3rem 5rem;
+    
   }
   input {
     background-color: transparent;
@@ -152,6 +153,20 @@ const FormContainer = styled.div`
       color: #4e0eff;
       text-decoration: none;
       font-weight: bold;
+    }
+  }
+
+  @media (max-width: 576px) {
+    form {
+      width:80vw;
+      margin:auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background-color: #788fc676;
+      border-radius: 1rem;
+      padding: 1rem 1rem;
+      
     }
   }
 `;

@@ -114,7 +114,7 @@ const FormContainer = styled.div`
     }
   }
   form {
-    width:40vw;
+    width:60vw;
     margin:auto;
     display: flex;
     flex-direction: column;
@@ -122,6 +122,12 @@ const FormContainer = styled.div`
     background-color: #788fc676;
     border-radius: 2rem;
     padding: 3rem 5rem;
+    @media (max-width;576px) {
+      width:80vw;
+      gap:1rem;
+      border-radius: 1rem;
+      padding:1rem 1rem;
+    }
   }
   input {
     background-color: transparent;
