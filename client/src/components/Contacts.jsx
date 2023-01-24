@@ -130,9 +130,12 @@ const Container = styled.div`
       cursor: pointer;
       border-radius: 0.2rem;
       display: flex;
-      /* gap: 1rem; */
+      border-radius:10%;
       align-items: center;
       transition: 0.5s ease-in-out;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      padding:3px;
       @media (max-width: 576px) {
         min-height: 1.5rem;
       }
@@ -146,12 +149,14 @@ const Container = styled.div`
       }
       .username {
         h3 {
+          width:100%;
+          margin-left:5px;
           font-size: 1.2rem;
           color: white;
+          overflow:hidden;
+          text-overflow:ellipsis;
           @media (max-width: 576px) {
-            overflow:hidden;
             font-size: 0.8rem;
-            word-break: break-all;
             margin-bottom: 0;
           }
         }
