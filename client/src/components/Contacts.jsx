@@ -3,18 +3,16 @@ import styled from "styled-components";
 import Logo from "../doc/logo.svg";
 import defaultAvatar from '../doc/defaultAvatar.png';
 import axios from "axios";
+import { FcSearch } from 'react-icons/fc';
 
 export default function Contacts(props) {
   const { changeChat } = props;
- 
-  
   const [currentUserName, setCurrentUserName] = useState({ username: "" });
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
   const [list, setList] = useState([])
+  const [search, setSearch] = useState(list)
   
- 
- 
   //get current user from localStorage
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("currentUser"));
@@ -32,18 +30,24 @@ export default function Contacts(props) {
     setCurrentSelected(index);
     changeChat(contact);
   };
-  
 
+  const inputHandler =(e)=> {
+    setSearch(e.target.value) 
+  }
+
+  const searchList = [...list].filter(contact => contact.username.includes(search))
+    console.log("🚀 ~ file: Contacts.jsx:40 ~ useEffect ~ SearchList", searchList)
+  
   return (
     <>
       {currentUserImage && currentUserImage && (
         <Container>
-          <div className="brand">
-            <img src={Logo} alt="logo" />
-            <h3>snappy</h3>
-          </div>
+          <form className="d-flex" role="search">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={inputHandler}/>
+            <FcSearch />
+          </form>
           <div className="contacts">
-           {list.map((contact,index)=> {
+           {searchList.map((contact,index)=> {
             let avatarImg = `data:image/svg+xml;base64,${contact.avatarImage}`
             if (!contact.avatarImage) {
               avatarImg = defaultAvatar
@@ -86,7 +90,7 @@ export default function Contacts(props) {
 }
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 10% 75% 15%;
+  grid-template-rows: 5% 80% 15%;
   overflow: hidden;
   background-color: #080420;
   position: relative;
@@ -96,27 +100,22 @@ const Container = styled.div`
       height: 1rem;
     }
   }
-  .brand {
-    display: flex;
-    align-items: center;
-    /* gap: 1rem; */
-    justify-content: center;
-    img {
-      height: 2rem;
-    }
-    h3 {
-      color: white;
-      text-transform: uppercase;
-    }
+  form {
+    justify-content:center;
+    align-self:center;
+    height:2rem;
   }
+  
   .contacts {
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    gap: 0.4rem;
+    gap: 0.2rem;
+    margin: 0 5px;
     &::-webkit-scrollbar {
       width: 0.2rem;
+      margin-left:5px;
       &-thumb {
         background-color: #ffffff39;
         width: 0.1rem;

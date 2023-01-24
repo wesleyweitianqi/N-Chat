@@ -14,6 +14,10 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
   const socketRef = useRef();
+
+  const currentChatHandler = ()=> {
+    setCurrentChat(undefined)
+  }
   
   useEffect(() => {
     if (!localStorage.getItem("currentUser")) {
@@ -61,6 +65,7 @@ const Chat = () => {
             <ChatContainer
               className="grid-item-2"
               currentChat={currentChat}
+              currentChatHandler={currentChatHandler}
               socketRef={socketRef}
             />
           )}

@@ -4,9 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 import Logout from "./Logout";
 import ChatInput from "./ChatInput";
 import "./ChatContainer.scss";
+import {AiOutlineCloseCircle} from 'react-icons/ai'
 
 const ChatContainer = (props) => {
-  const { currentChat, socketRef } = props;
+  const { currentChat, currentChatHandler, socketRef } = props;
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -82,7 +83,9 @@ const ChatContainer = (props) => {
           <div className="username">
             <h3>{currentChat.username}</h3>
           </div>
+          <button onClick={currentChatHandler}><AiOutlineCloseCircle /></button>
         </div>
+        
         <Logout />
       </div>
       <div className="chat-messages grid-item-2">
