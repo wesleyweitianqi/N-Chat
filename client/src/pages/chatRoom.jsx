@@ -54,6 +54,7 @@ const Chat = () => {
     <div className="container-fluid">
       <div className="chat-container">
         <div className="container">
+       
           <Contacts
             className="grid-item-1"
             contacts={contacts}
@@ -69,9 +70,10 @@ const Chat = () => {
               socketRef={socketRef}
             />
           )}
+          </div>
         </div>
       </div>
-    </div>
+   
   );
 };
 

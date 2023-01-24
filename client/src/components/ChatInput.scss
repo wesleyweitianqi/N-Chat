@@ -1,6 +1,11 @@
 
   .container-fluid {
     width:100%;
+    .row {
+      width: 100%;
+      justify-content: space-evenly;
+      margin: auto;
+    }
   }
 
   .emoji {
@@ -106,6 +111,9 @@
   
   .chat-input {
     background-color: transparent;
+  }
+  .col-10 {
+    justify-content: end;
   }
   
  

@@ -71,45 +71,48 @@ const ChatContainer = (props) => {
   }, [messages]);
 
   return (
-    <div className="grid">
-      <div className="chat-header grid-item-1">
-        <div className="user-details">
-          <div className="avatar">
-            <img
-              src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
-              alt=""
-            />
+    
+      <div className="grid">
+        <div className="chat-header grid-item-1">
+          <div className="user-details">
+            <div className="avatar">
+              <img
+                src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
+                alt=""
+              />
+            </div>
+            <div className="username">
+              <h3>{currentChat.username}</h3>
+            </div>
+            <button onClick={currentChatHandler}><AiOutlineCloseCircle /></button>
           </div>
-          <div className="username">
-            <h3>{currentChat.username}</h3>
-          </div>
-          <button onClick={currentChatHandler}><AiOutlineCloseCircle /></button>
+          
+          <Logout />
         </div>
-        
-        <Logout />
-      </div>
-      <div className="chat-messages grid-item-2">
-        {messages.map((message) => {
-          return (
-            <div ref={scrollRef} key={uuidv4()}>
-              <div
-                className={`message ${
-                  message.fromSelf ? "sended" : "recieved"
-                }`}
-              >
-                <div className="content ">
-                  <p style={{marginBottom:0}}>{message.message}</p>
+        <div className="chat-messages grid-item-2">
+          {messages.map((message) => {
+            return (
+              <div ref={scrollRef} key={uuidv4()}>
+                <div
+                  className={`message ${
+                    message.fromSelf ? "sended" : "recieved"
+                  }`}
+                >
+                  <div className="content ">
+                    <p style={{marginBottom:0}}>{message.message}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+        <div className="chat-input grid-item-3">
+          <ChatInput handleSendMsg={handleSendMsg} />
+        </div>
       </div>
-      <div className="chat-input grid-item-3">
-        <ChatInput handleSendMsg={handleSendMsg} />
-      </div>
-    </div>
-  );
+
+    
+    );
 };
 
 

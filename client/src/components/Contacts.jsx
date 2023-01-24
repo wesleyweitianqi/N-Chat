@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Logo from "../doc/logo.svg";
 import defaultAvatar from '../doc/defaultAvatar.png';
 import axios from "axios";
-import { FcSearch } from 'react-icons/fc';
 
 export default function Contacts(props) {
   const { changeChat } = props;
@@ -44,7 +43,6 @@ export default function Contacts(props) {
         <Container>
           <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={inputHandler}/>
-            <FcSearch />
           </form>
           <div className="contacts">
            {searchList.map((contact,index)=> {
