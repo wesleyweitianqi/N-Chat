@@ -55,7 +55,7 @@ const Chat = () => {
       <div className="chat-container">
         <div className="container">
           <Contacts
-            className=" grid-item-1"
+            className="grid-item-1"
             contacts={contacts}
             changeChat={handleChatChange}
           />

@@ -1,22 +1,21 @@
 
-
-  .button-container {
-    display: flex;
-    flex-direction: rows;
-    align-items: center;
-    color: white;
-    gap: 1rem;
-
+  .container-fluid {
+    width:100%;
   }
+
   .emoji {
     svg {
       margin-right: 30px;
       font-size: 1.5rem;
       color: #ffff00c8;
       cursor: pointer;
+      @media (max-width:576px) {
+        font-size: 1.1rem;
+        margin-right: 1rem;
+        }
     }
+   
     .emoji-picker-react {
-      
       background-color: #080420;
       box-shadow: 0 5px 10px #9a86f3;
       border-color: #9a86f3;
@@ -27,6 +26,7 @@
           background-color: #9a86f3;
         }
       }
+
       
       .emoji-categories {
         button {
@@ -42,6 +42,10 @@
       }
     }
   }
+  aside.emoji-picker-react {
+    position: absolute;
+    bottom:10%;
+  }
   .input-container {
     
     border-radius: 2rem;
@@ -51,7 +55,10 @@
     gap: 2rem;
     background-color: #ffffff34;
     justify-content: space-between;
-    
+    @media (max-width:576px) {
+      border-radius: 1rem;
+      
+      }
     .input {
       float:right;
       width: 90%;
@@ -66,6 +73,10 @@
       &:focus {
         outline: none;
       }
+      @media (max-width:576px) {
+        padding-left: 0.6rem;
+        font-size: 0.6rem;
+      }
     }
     .submitBtn {
       padding: 0.3rem 2rem;
@@ -75,11 +86,17 @@
       align-items: center;
       background-color: #9a86f3;
       border: none;
-      
       svg {
         font-size: 2rem;
         color: white;
       }
+      @media (max-width:576px) {
+        padding: 0.2rem 0.4rem;
+        svg {
+          font-size: 1rem;
+        }
+        }
+      
       &:hover {
         background-color: purple;
       }
@@ -91,8 +108,4 @@
     background-color: transparent;
   }
   
-  aside.EmojiPickerReact.epr-main {
-    position: absolute;
-    bottom:10%;
-
-  }
+ 

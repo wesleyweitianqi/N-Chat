@@ -180,6 +180,12 @@ const Container = styled.div`
         max-inline-size: 100%;
       }
     }
+    @media (max-width:576px) {
+      flex-direction: column;
+      .avatar > img {
+        height:1.5rem;
+      }
+    }
     .username {
       h2 {
         font-size: 1.2rem;
